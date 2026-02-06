@@ -103,8 +103,8 @@ export default function SimulationView({ data }: SimulationViewProps) {
                                 <div className="flex items-center justify-between">
                                     <span className="font-semibold text-gray-900">{effect.name}</span>
                                     <span className={`rounded-full px-2 py-0.5 text-xs font-medium ${effect.severity === 'Severe' ? 'bg-red-100 text-red-700' :
-                                            effect.severity === 'Moderate' ? 'bg-yellow-100 text-yellow-700' :
-                                                'bg-green-100 text-green-700'
+                                        effect.severity === 'Moderate' ? 'bg-yellow-100 text-yellow-700' :
+                                            'bg-green-100 text-green-700'
                                         }`}>
                                         {effect.severity}
                                     </span>
@@ -117,7 +117,7 @@ export default function SimulationView({ data }: SimulationViewProps) {
                             <div className="mt-3 h-1.5 w-full overflow-hidden rounded-full bg-gray-200">
                                 <div
                                     className={`h-full rounded-full ${effect.probability > 20 ? 'bg-red-500' :
-                                            effect.probability > 10 ? 'bg-yellow-500' : 'bg-green-500'
+                                        effect.probability > 10 ? 'bg-yellow-500' : 'bg-green-500'
                                         }`}
                                     style={{ width: `${effect.probability}%` }}
                                 />
@@ -176,7 +176,7 @@ export default function SimulationView({ data }: SimulationViewProps) {
                         Evidence Sources
                     </h3>
                     <div className="space-y-3">
-                        {evidence.map((source, i) => (
+                        {evidence?.map((source, i) => (
                             <div key={i} className="rounded-lg bg-gray-50 p-3 text-xs text-gray-600 transition-colors hover:bg-gray-100">
                                 {source}
                             </div>

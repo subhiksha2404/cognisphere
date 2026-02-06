@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, Suspense } from 'react';
 import GameDashboard from '@/components/training/GameDashboard';
 import type { GameSession, ClinicalDiseaseType } from '@/lib/types';
 import { supabase } from '@/lib/supabase';
@@ -9,7 +9,7 @@ import { useSearchParams } from 'next/navigation';
 import { GAMES, DISEASE_TABS } from '@/lib/gameData';
 import { cn } from '@/lib/utils';
 
-export default function TrainingPage() {
+function TrainingContent() {
     const [sessions, setSessions] = useState<GameSession[]>([]);
     const [loading, setLoading] = useState(true);
     const searchParams = useSearchParams();
@@ -95,6 +95,18 @@ export default function TrainingPage() {
                 </div>
             </div>
         </div>
+    );
+}
+
+export default function TrainingPage() {
+    return (
+        <Suspense fallback={
+            <div className="flex min-h-screen items-center justify-center bg-gray-50">
+                <Loader2 className="h-8 w-8 animate-spin text-blue-600" />
+            </div>
+        }>
+            <TrainingContent />
+        </Suspense>
     );
 }
 
